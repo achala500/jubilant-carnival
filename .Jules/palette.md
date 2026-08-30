@@ -1,0 +1,3 @@
+## 2025-02-23 - Icon-only button accessibility
+**Learning:** Found a recurring pattern of icon-only `<button>` components (e.g., Settings, Trash/delete, Calendar Chevrons) lacking `aria-label` attributes across different views (Dashboard, Calendar, Daily Logger). These components use a generic `size="icon"` prop and rely purely on visual `Lucide` icons to convey meaning.
+**Action:** Always ensure `aria-label` is applied alongside the `size="icon"` prop when rendering icon-only buttons to guarantee screen-reader accessibility and compliance with accessibility standards.
