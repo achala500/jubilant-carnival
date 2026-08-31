@@ -1,0 +1,3 @@
+## 2025-03-01 - Missing ARIA Labels on Icon-Only Buttons
+**Learning:** Icon-only buttons (like the Settings gear, Calendar navigation chevrons, and Trash delete buttons) are frequently missing `aria-label` attributes across the application. This makes them entirely inaccessible to screen readers, which will just read them as "button" with no context of what they do.
+**Action:** Always ensure that any button without visible text content has a descriptive `aria-label` attribute explaining its function to assistive technologies.
