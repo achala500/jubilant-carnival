@@ -5,6 +5,8 @@ import { Button } from '../ui/Button';
 import { Download, Fingerprint } from 'lucide-react';
 import html2canvas from 'html2canvas';
 
+const BARCODE_WIDTHS = [...Array(40)].map(() => Math.max(1, Math.random() * 4));
+
 export function CountdownWidget() {
   const targetYear = 2026;
   const targetDate = new Date(`${targetYear}-08-01T00:00:00`);
@@ -88,8 +90,8 @@ export function CountdownWidget() {
         <div className="mt-8 flex justify-center opacity-40">
            {/* Mock Barcode */}
            <div className="h-10 w-full flex gap-[2px] justify-center items-center">
-             {[...Array(40)].map((_, i) => (
-                <div key={i} className="bg-black h-full" style={{ width: `${Math.max(1, Math.random() * 4)}px` }}></div>
+             {BARCODE_WIDTHS.map((width, i) => (
+                <div key={i} className="bg-black h-full" style={{ width: `${width}px` }}></div>
              ))}
            </div>
         </div>
