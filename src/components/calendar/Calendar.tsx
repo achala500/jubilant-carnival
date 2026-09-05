@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import type { DragEvent } from 'react';
 import {
   format,
@@ -76,6 +76,17 @@ export function StudyCalendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [view, setView] = useState<ViewType>('month');
   const [blocks, setBlocks] = useState<StudyBlock[]>(MOCK_BLOCKS);
+
+  const blocksByDate = useMemo(() => {
+    const map = new Map<string, StudyBlock[]>();
+    blocks.forEach(block => {
+      const dateStr = `${block.date.getFullYear()}-${block.date.getMonth()}-${block.date.getDate()}`;
+      const existing = map.get(dateStr) || [];
+      existing.push(block);
+      map.set(dateStr, existing);
+    });
+    return map;
+  }, [blocks]);
 
   const handleExportICS = () => {
     const events: ics.EventAttributes[] = blocks.map(block => {
@@ -168,7 +179,7 @@ export function StudyCalendar() {
           </div>
         ))}
         {days.map((day) => {
-          const dayBlocks = blocks.filter((b) => isSameDay(b.date, day));
+          const dayBlocks = blocksByDate.get(`${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`) || [];
           return (
             <div
               key={day.toString()}
@@ -203,7 +214,7 @@ export function StudyCalendar() {
           </div>
         ))}
         {days.map((day) => {
-          const dayBlocks = blocks.filter((b) => isSameDay(b.date, day));
+          const dayBlocks = blocksByDate.get(`${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`) || [];
           return (
             <div
               key={day.toString() + 'content'}
@@ -220,7 +231,7 @@ export function StudyCalendar() {
   };
 
   const renderDayView = () => {
-    const dayBlocks = blocks.filter((b) => isSameDay(b.date, currentDate));
+    const dayBlocks = blocksByDate.get(`${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`) || [];
     return (
       <div className="mt-6 bg-white border border-gray-200 rounded-xl overflow-hidden min-h-[400px]">
         <div className="bg-gray-50 p-4 border-b border-gray-200 text-center flex flex-col items-center">
