@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import type { DragEvent } from 'react';
 import {
   format,
@@ -76,6 +76,12 @@ export function StudyCalendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [view, setView] = useState<ViewType>('month');
   const [blocks, setBlocks] = useState<StudyBlock[]>(MOCK_BLOCKS);
+
+  const sortedDayBlocks = useMemo(() => {
+    return blocks
+      .filter((b) => isSameDay(b.date, currentDate))
+      .sort((a, b) => a.startTime.localeCompare(b.startTime));
+  }, [blocks, currentDate]);
 
   const handleExportICS = () => {
     const events: ics.EventAttributes[] = blocks.map(block => {
@@ -220,7 +226,6 @@ export function StudyCalendar() {
   };
 
   const renderDayView = () => {
-    const dayBlocks = blocks.filter((b) => isSameDay(b.date, currentDate));
     return (
       <div className="mt-6 bg-white border border-gray-200 rounded-xl overflow-hidden min-h-[400px]">
         <div className="bg-gray-50 p-4 border-b border-gray-200 text-center flex flex-col items-center">
@@ -234,11 +239,11 @@ export function StudyCalendar() {
           onDragOver={(e) => e.preventDefault()}
           onDrop={(e) => handleDrop(e, currentDate)}
         >
-          {dayBlocks.length === 0 ? (
+          {sortedDayBlocks.length === 0 ? (
             <div className="text-center text-gray-500 py-12">No study blocks planned for this day.</div>
           ) : (
             <div className="space-y-4">
-              {dayBlocks.sort((a, b) => a.startTime.localeCompare(b.startTime)).map((block) => (
+              {sortedDayBlocks.map((block) => (
                 <div key={block.id} draggable onDragStart={(e) => handleDragStart(e, block.id)} className={`p-4 rounded-xl border flex flex-col gap-2 cursor-move ${block.type === 'past' ? 'opacity-60' : ''} ${SUBJECT_COLORS[block.subject]} hover:shadow-md transition-all`}>
                   <div className="flex justify-between items-center font-bold text-lg">
                     <div className="flex items-center gap-2">
