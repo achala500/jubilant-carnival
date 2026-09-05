@@ -51,7 +51,7 @@ export function DailyLogger() {
     };
 
     try {
-      const response = await fetch('http://localhost:3001/submitDailyLog', {
+      const response = await fetch('/api/submitDailyLog', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
