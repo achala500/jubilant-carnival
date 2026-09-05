@@ -107,7 +107,7 @@ export function StudyCalendar() {
   };
 
   const generateRoomUrl = (blockId: string) => {
-    const meetId = Math.random().toString(36).substring(2, 12);
+    const meetId = crypto.randomUUID().replace(/-/g, '').substring(0, 10);
     setBlocks(blocks.map(b => b.id === blockId ? { ...b, roomUrl: `https://meet.google.com/${meetId}` } : b));
   };
 
