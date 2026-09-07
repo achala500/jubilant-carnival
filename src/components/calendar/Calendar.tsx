@@ -145,7 +145,7 @@ export function StudyCalendar() {
                 <Video className="w-3 h-3" />
               </a>
             ) : (
-              <button onClick={(e) => { e.stopPropagation(); generateRoomUrl(block.id); }} className="hover:text-gray-900">
+              <button aria-label="Generate room URL" onClick={(e) => { e.stopPropagation(); generateRoomUrl(block.id); }} className="hover:text-gray-900">
                 <Video className="w-3 h-3 opacity-50 hover:opacity-100" />
               </button>
             )}
@@ -276,7 +276,7 @@ export function StudyCalendar() {
             {format(currentDate, view === 'month' ? 'MMMM yyyy' : 'MMMM d, yyyy')}
           </h2>
           <div className="flex space-x-1 sm:space-x-2 bg-gray-50 p-1 rounded-xl border border-gray-200">
-            <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-10 sm:w-10 hover:bg-white hover:shadow-sm" onClick={() => {
+            <Button variant="ghost" size="icon" aria-label="Previous" className="h-8 w-8 sm:h-10 sm:w-10 hover:bg-white hover:shadow-sm" onClick={() => {
               if (view === 'month') setCurrentDate(subMonths(currentDate, 1));
               else if (view === 'week') setCurrentDate(addDays(currentDate, -7));
               else setCurrentDate(addDays(currentDate, -1));
@@ -286,7 +286,7 @@ export function StudyCalendar() {
             <Button variant="ghost" className="h-8 sm:h-10 px-2 sm:px-4 font-medium hover:bg-white hover:shadow-sm" onClick={() => setCurrentDate(new Date())}>
               Today
             </Button>
-            <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-10 sm:w-10 hover:bg-white hover:shadow-sm" onClick={() => {
+            <Button variant="ghost" size="icon" aria-label="Next" className="h-8 w-8 sm:h-10 sm:w-10 hover:bg-white hover:shadow-sm" onClick={() => {
                if (view === 'month') setCurrentDate(addMonths(currentDate, 1));
                else if (view === 'week') setCurrentDate(addDays(currentDate, 7));
                else setCurrentDate(addDays(currentDate, 1));
