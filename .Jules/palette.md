@@ -1,0 +1,1 @@
+## 2026-09-08 - Icon-only buttons lack ARIA labels\n**Learning:** Found a recurring accessibility pattern in this app's components where icon-only buttons (like Settings, Previous, Next, Trash, and Video icons) lack 'aria-label' attributes.\n**Action:** Add 'aria-label' attributes to all icon-only buttons to ensure they are readable by screen readers.
