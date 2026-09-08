@@ -141,11 +141,11 @@ export function StudyCalendar() {
           <div className="flex justify-between items-center text-[10px] opacity-80">
             <span>{block.startTime}</span>
             {block.roomUrl ? (
-              <a href={block.roomUrl} target="_blank" rel="noreferrer" className="text-blue-600 hover:text-blue-800" onClick={e => e.stopPropagation()}>
+              <a aria-label="Join Room" href={block.roomUrl} target="_blank" rel="noreferrer" className="text-blue-600 hover:text-blue-800" onClick={e => e.stopPropagation()}>
                 <Video className="w-3 h-3" />
               </a>
             ) : (
-              <button onClick={(e) => { e.stopPropagation(); generateRoomUrl(block.id); }} className="hover:text-gray-900">
+              <button aria-label="Add Room" onClick={(e) => { e.stopPropagation(); generateRoomUrl(block.id); }} className="hover:text-gray-900">
                 <Video className="w-3 h-3 opacity-50 hover:opacity-100" />
               </button>
             )}
@@ -250,11 +250,11 @@ export function StudyCalendar() {
                   <div className="flex justify-between items-center">
                     <span className="font-medium opacity-80">{block.subject}</span>
                     {block.roomUrl ? (
-                      <a href={block.roomUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1 bg-white/50 px-3 py-1.5 rounded-lg hover:bg-white/80 transition-colors" onClick={e => e.stopPropagation()}>
+                      <a aria-label="Join Room" href={block.roomUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1 bg-blue-50 text-blue-700 px-3 py-1.5 rounded-lg hover:bg-blue-100 transition-colors" onClick={e => e.stopPropagation()}>
                         <Video className="w-4 h-4" /> Join Room
                       </a>
                     ) : (
-                      <button onClick={(e) => { e.stopPropagation(); generateRoomUrl(block.id); }} className="flex items-center gap-1 bg-white/50 px-3 py-1.5 rounded-lg hover:bg-white/80 transition-colors">
+                      <button aria-label="Add Room" onClick={(e) => { e.stopPropagation(); generateRoomUrl(block.id); }} className="flex items-center gap-1 bg-white/50 px-3 py-1.5 rounded-lg hover:bg-white/80 transition-colors">
                         <Video className="w-4 h-4" /> Add Room
                       </button>
                     )}
@@ -276,7 +276,7 @@ export function StudyCalendar() {
             {format(currentDate, view === 'month' ? 'MMMM yyyy' : 'MMMM d, yyyy')}
           </h2>
           <div className="flex space-x-1 sm:space-x-2 bg-gray-50 p-1 rounded-xl border border-gray-200">
-            <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-10 sm:w-10 hover:bg-white hover:shadow-sm" onClick={() => {
+            <Button aria-label="Previous date" variant="ghost" size="icon" className="h-8 w-8 sm:h-10 sm:w-10 hover:bg-white hover:shadow-sm" onClick={() => {
               if (view === 'month') setCurrentDate(subMonths(currentDate, 1));
               else if (view === 'week') setCurrentDate(addDays(currentDate, -7));
               else setCurrentDate(addDays(currentDate, -1));
@@ -286,7 +286,7 @@ export function StudyCalendar() {
             <Button variant="ghost" className="h-8 sm:h-10 px-2 sm:px-4 font-medium hover:bg-white hover:shadow-sm" onClick={() => setCurrentDate(new Date())}>
               Today
             </Button>
-            <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-10 sm:w-10 hover:bg-white hover:shadow-sm" onClick={() => {
+            <Button aria-label="Next date" variant="ghost" size="icon" className="h-8 w-8 sm:h-10 sm:w-10 hover:bg-white hover:shadow-sm" onClick={() => {
                if (view === 'month') setCurrentDate(addMonths(currentDate, 1));
                else if (view === 'week') setCurrentDate(addDays(currentDate, 7));
                else setCurrentDate(addDays(currentDate, 1));
