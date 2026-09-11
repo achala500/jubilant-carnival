@@ -3,7 +3,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { Badge } from '../ui/Badge';
-import { Plus, Trash2, ChevronDown, ChevronUp, CheckCircle2 } from 'lucide-react';
+import { Plus, Trash2, ChevronDown, ChevronUp, CheckCircle2, Loader2 } from 'lucide-react';
 
 type Subject = 'Bio' | 'Maths' | 'Physics' | 'Chemistry';
 
@@ -143,7 +143,7 @@ export function DailyLogger() {
                 </div>
               </div>
 
-              <Button variant="ghost" size="icon" className="text-red-500 hover:text-red-700 hover:bg-red-50 self-start md:self-center" onClick={() => removeSession(session.id)}>
+              <Button aria-label="Remove session" variant="ghost" size="icon" className="text-red-500 hover:text-red-700 hover:bg-red-50 self-start md:self-center" onClick={() => removeSession(session.id)}>
                 <Trash2 className="h-5 w-5" />
               </Button>
             </div>
@@ -185,7 +185,8 @@ export function DailyLogger() {
             </div>
           </div>
 
-          <Button fullWidth size="lg" onClick={handleSubmit} disabled={isSubmitting}>
+          <Button fullWidth size="lg" onClick={handleSubmit} disabled={isSubmitting} className="flex items-center justify-center">
+            {isSubmitting && <Loader2 className="mr-2 h-5 w-5 animate-spin" />}
             {isSubmitting ? 'Saving...' : 'Save Daily Log'}
           </Button>
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 import { Button } from '../ui/Button';
-import { Sparkles, CheckCircle2, Calendar } from 'lucide-react';
+import { Sparkles, CheckCircle2, Calendar, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { addDays, startOfWeek } from 'date-fns';
 
@@ -101,9 +101,13 @@ export function AIScheduler() {
             size="lg"
             onClick={handleGenerate}
             disabled={isGenerating}
-            className="text-lg font-bold relative overflow-hidden group shadow-md"
+            className="text-lg font-bold relative overflow-hidden group shadow-md flex items-center justify-center"
           >
-            <Sparkles className="w-5 h-5 mr-2 opacity-80" />
+            {isGenerating ? (
+              <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+            ) : (
+              <Sparkles className="w-5 h-5 mr-2 opacity-80" />
+            )}
             {isGenerating ? 'Generating magical plan...' : 'Generate Weekly Plan'}
             {!isGenerating && (
               <div className="absolute inset-0 h-full w-full bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
