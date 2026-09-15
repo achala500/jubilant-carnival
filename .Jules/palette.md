@@ -1,0 +1,3 @@
+## 2025-02-18 - Keyboard Accessibility for Custom Interactive Components
+**Learning:** The project's custom `Button` component size='icon' variant lacks enforced ARIA labels. Additionally, interactive expander rows implemented using `div` elements need explicit `role="button"`, `tabIndex={0}`, `aria-expanded`, keyboard event handlers (`onKeyDown`), and `focus-visible` utility classes to be fully accessible.
+**Action:** When implementing icon buttons or non-native interactive components (e.g. clickable `div`s for accordions), always add missing ARIA properties, keyboard handlers for Enter/Space, and explicit focus states.

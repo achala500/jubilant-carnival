@@ -143,7 +143,7 @@ export function DailyLogger() {
                 </div>
               </div>
 
-              <Button variant="ghost" size="icon" className="text-red-500 hover:text-red-700 hover:bg-red-50 self-start md:self-center" onClick={() => removeSession(session.id)}>
+              <Button aria-label="Delete session" variant="ghost" size="icon" className="text-red-500 hover:text-red-700 hover:bg-red-50 self-start md:self-center" onClick={() => removeSession(session.id)}>
                 <Trash2 className="h-5 w-5" />
               </Button>
             </div>
@@ -236,8 +236,17 @@ function HistoryTable() {
         {history.map((record) => (
           <div key={record.id} className="flex flex-col">
             <div
-              className="p-6 flex items-center justify-between cursor-pointer hover:bg-gray-50 transition-colors"
+              role="button"
+              tabIndex={0}
+              aria-expanded={expanded === record.id}
+              className="p-6 flex items-center justify-between cursor-pointer hover:bg-gray-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
               onClick={() => setExpanded(expanded === record.id ? null : record.id)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setExpanded(expanded === record.id ? null : record.id);
+                }
+              }}
             >
               <div className="flex items-center gap-6">
                 <div className="font-semibold text-lg min-w-[100px]">{record.date}</div>
