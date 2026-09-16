@@ -1,0 +1,3 @@
+## 2025-02-12 - Button component accessibility
+**Learning:** The project's custom `Button` component in `src/components/ui/Button.tsx` does not enforce or require ARIA labels, even when the `size="icon"` variant is used. This can easily lead to inaccessible icon-only buttons if developers forget to add the `aria-label` attribute manually.
+**Action:** Always manually verify and add an `aria-label` prop when using the `Button` component with `size="icon"` or when creating icon-only buttons with standard `<button>` tags. Consider suggesting a prop type update or lint rule in the future to enforce this at the component level.
