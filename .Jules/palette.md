@@ -1,0 +1,3 @@
+## 2026-09-18 - Missing ARIA Labels on Icon-Only Buttons
+**Learning:** In this application, both custom `Button` components (with `size="icon"`) and native `<button>` elements are frequently used as icon-only interactive elements without descriptive ARIA labels. This creates a significant accessibility issue for screen reader users as they encounter interactive elements without semantic context.
+**Action:** Always verify that any button containing only an icon (e.g., using lucide-react icons) explicitly includes an `aria-label` attribute describing its function, regardless of whether it is a native `<button>` or a custom `<Button>` component.
