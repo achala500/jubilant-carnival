@@ -47,7 +47,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
             </Link>
           </nav>
           <div className="flex items-center">
-            <Button variant="ghost" size="icon" className="hover:bg-gray-100 rounded-xl w-12 h-12">
+            <Button variant="ghost" size="icon" aria-label="Settings" className="hover:bg-gray-100 rounded-xl w-12 h-12">
               <Settings className="h-6 w-6 text-gray-600" />
             </Button>
           </div>
