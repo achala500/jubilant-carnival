@@ -1,0 +1,3 @@
+## 2025-02-15 - [ARIA Labels for Custom Button Component]
+**Learning:** The project's custom `Button` component in `src/components/ui/Button.tsx` supports a `size="icon"` variant for icon-only buttons, but it does not natively enforce or warn about missing `aria-label` properties. This leads to a recurring pattern of inaccessible icon-only buttons across components (like `ChevronLeft`/`Right` in Calendar and `Trash2` in DailyLogger).
+**Action:** Always manually add an explicit `aria-label` property when using the custom `<Button size="icon">` component to ensure screen reader accessibility, and consider a future UX enhancement to make `aria-label` required in the type definitions for the `icon` size variant.
