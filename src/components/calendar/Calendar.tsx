@@ -280,7 +280,7 @@ export function StudyCalendar() {
               if (view === 'month') setCurrentDate(subMonths(currentDate, 1));
               else if (view === 'week') setCurrentDate(addDays(currentDate, -7));
               else setCurrentDate(addDays(currentDate, -1));
-            }}>
+            }} aria-label="Previous" title="Previous">
               <ChevronLeft className="h-5 w-5" />
             </Button>
             <Button variant="ghost" className="h-8 sm:h-10 px-2 sm:px-4 font-medium hover:bg-white hover:shadow-sm" onClick={() => setCurrentDate(new Date())}>
@@ -290,7 +290,7 @@ export function StudyCalendar() {
                if (view === 'month') setCurrentDate(addMonths(currentDate, 1));
                else if (view === 'week') setCurrentDate(addDays(currentDate, 7));
                else setCurrentDate(addDays(currentDate, 1));
-            }}>
+            }} aria-label="Next" title="Next">
               <ChevronRight className="h-5 w-5" />
             </Button>
           </div>

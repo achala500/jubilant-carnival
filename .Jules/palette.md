@@ -1,0 +1,3 @@
+## 2024-05-18 - ARIA Labels on Icon Buttons
+**Learning:** The custom `Button` component in this project with `size="icon"` does not enforce the inclusion of ARIA labels. This leads to a recurring accessibility issue where screen readers cannot interpret the action of the icon-only buttons (like Settings, Remove session, Previous, and Next).
+**Action:** When adding or reviewing `Button` components with `size="icon"`, always manually ensure an `aria-label` (and optionally a `title` for hover tooltips) is provided to ensure they are fully accessible to screen readers and have proper keyboard focus context.
