@@ -143,7 +143,7 @@ export function DailyLogger() {
                 </div>
               </div>
 
-              <Button variant="ghost" size="icon" className="text-red-500 hover:text-red-700 hover:bg-red-50 self-start md:self-center" onClick={() => removeSession(session.id)}>
+              <Button variant="ghost" size="icon" className="text-red-500 hover:text-red-700 hover:bg-red-50 self-start md:self-center" aria-label="Remove session" title="Remove session" onClick={() => removeSession(session.id)}>
                 <Trash2 className="h-5 w-5" />
               </Button>
             </div>
